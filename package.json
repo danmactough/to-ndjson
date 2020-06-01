@@ -1,6 +1,6 @@
 {
   "name": "to-ndjson",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Convert a JSON array of objects to line-delimited JSON without parsing the entire array into memory",
   "keywords": [
     "json",
