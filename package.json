@@ -1,8 +1,16 @@
 {
   "name": "to-ndjson",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Convert a JSON array of objects to line-delimited JSON without parsing the entire array into memory",
+  "keywords": [
+    "json",
+    "ndjson",
+    "ldjson"
+  ],
   "main": "index.js",
+  "files": [
+    "*.js"
+  ],
   "scripts": {
     "pretest": "prettier --write '*.js'",
     "test": "tape test.js"
