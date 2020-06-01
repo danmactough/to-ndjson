@@ -78,3 +78,35 @@ test('converts JSON array of objects to NDJSON in chunks', (t) => {
   s.write('"a":3,"b":4}');
   s.end();
 });
+
+test('handles and bubbles up jsonparser errors', (t) => {
+  const pass = new PassThrough({
+    decodeStrings: false,
+    defaultEncoding: 'utf8',
+    encoding: 'utf8',
+  });
+  let counter = 0;
+  const expected = ['{"a":1,"b":2}\n', '{"a":3,"b":4}\n'];
+
+  const s = new ToNDJSON();
+  s.on('error', (err) => {
+    t.strictEqual(counter, 1, 'generates 1 objects');
+    t.ok(err, 'emits an error');
+    t.end();
+  });
+  s.pipe(pass);
+
+  pass.once('data', (data) => {
+    t.strictEqual(data, '{"a":1,"b":2}\n', 'line matches expected JSON value');
+    counter++;
+  });
+
+  s.write('[{"a":1,"b":2},{');
+
+  pass.once('data', (data) => {
+    throw new Error('This line should not be emitted');
+  });
+
+  s.write('{"a":3,"b":4}');
+  s.end();
+});

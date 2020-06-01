@@ -16,6 +16,9 @@ class ToNDJSON extends Transform {
         stream.push(value);
       }
     };
+    parser.onError = function (error) {
+      stream.destroy(error);
+    };
   }
 
   _transform(chunk, encoding, callback) {
