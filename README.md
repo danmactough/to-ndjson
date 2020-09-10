@@ -6,7 +6,7 @@ If you need to parse very large JSON that is unfortunately formatted as an array
 
 ## Usage
 
-All options of [Readable](https://nodejs.org/api/stream.html#stream_new_stream_readable_options) and [Writable](https://nodejs.org/api/stream.html#stream_constructor_new_stream_writable_options) streams can be passed to the `ToNDJSON` constructor, but the most relevant option is `readableObjectMode`. If you set `readableObjectMode: true`, your consumer will receive a stream of JSON objects. Otherwise, the default behavior is that your consumer will receive a stream of JSON stringified objects, each following by a newline.
+All options of [Readable](https://nodejs.org/api/stream.html#stream_new_stream_readable_options) and [Writable](https://nodejs.org/api/stream.html#stream_constructor_new_stream_writable_options) streams can be passed to the `ToNDJSON` constructor, but the most relevant option is `readableObjectMode`. If you set `readableObjectMode: true`, your consumer will receive a stream of JSON objects. Otherwise, the default behavior is that your consumer will receive a stream of JSON stringified objects, each followed by a newline.
 
 ```js
 const { ToNDJSON } = require('to-ndjson');
